@@ -1,0 +1,15 @@
+.category-container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    background-color: var(--light-cyan);
+    border-right: 2px solid var(--dark);
+}
+
+.category-header {
+    font-size: 28px;
+    font-weight: bold;
+    padding: 1rem 1rem;
+    background-color: var(--light-grey);
+    border-bottom: 2px solid var(--dark);
+}

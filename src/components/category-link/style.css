@@ -1,0 +1,22 @@
+.category {
+    cursor: pointer;
+    padding: 1rem 1rem;
+    width: 100%;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    border-bottom: 2px solid var(--dark);
+}
+
+.category:hover {
+    text-shadow: 2px 2px 8px var(--dark);
+}
+
+.category-text {
+    font-size: 22px;
+    font-weight: normal;
+}
+
+.category-selected {
+    background-color: var(--light);
+}
