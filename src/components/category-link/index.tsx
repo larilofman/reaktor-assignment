@@ -1,3 +1,4 @@
+import React from 'react';
 import { Category } from '../state/reducer/category/types';
 import './style.css';
 
@@ -9,7 +10,7 @@ interface Props {
 
 const CategoryLink: React.FC<Props> = ({ category, onClick, selected }) => {
 
-    const containerClass = `category ${selected && "category-selected"}`
+    const containerClass = `category ${selected && "category-selected"}`;
 
     return (
         <div className={containerClass} onClick={onClick}>
@@ -18,6 +19,6 @@ const CategoryLink: React.FC<Props> = ({ category, onClick, selected }) => {
             </p>
         </div>
     );
-}
+};
 
 export default CategoryLink;

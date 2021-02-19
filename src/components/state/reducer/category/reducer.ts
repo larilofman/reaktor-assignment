@@ -9,13 +9,13 @@ const initialState: State = {
         Category.Facemasks,
         Category.Beanies
     ]
-}
+};
 
 const reducer = createReducer(initialState, (builder) => {
     builder
         .addCase(SetSelectedCategory, (state, action) => {
-            state.selectedCategory = action.payload
-        })
-})
+            state.selectedCategory = action.payload;
+        });
+});
 
 export default reducer;

@@ -1,7 +1,7 @@
 .category-container {
     display: flex;
     flex-direction: column;
-    height: 100vh;
+    min-height: 100vh;
     background-color: var(--light-cyan);
     border-right: 2px solid var(--dark);
 }
