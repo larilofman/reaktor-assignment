@@ -4,7 +4,7 @@ import './App.css';
 import CategoryBar from './components/category-bar';
 import ProductList from './components/product-list';
 import { Category } from './components/state/reducer/category/types';
-import { FetchProducts } from './components/state/reducer/products/action';
+import { FetchProducts, GetAvailability } from './components/state/reducer/products/action';
 import { RootState } from './components/state/store';
 
 const App = () => {
@@ -15,6 +15,7 @@ const App = () => {
         Object.keys(Category).forEach((category) =>
             dispatch(FetchProducts(category as Category))
         );
+        dispatch(GetAvailability("niksleh"));
     }, [dispatch]);
 
     return (

@@ -1,6 +1,7 @@
 import { createReducer } from '@reduxjs/toolkit';
-import { SetProducts } from './action';
-import { ProductsState } from './types';
+import { Category } from '../category/types';
+import { SetProducts, SetAvailability } from './action';
+import { Product, ProductsState } from './types';
 
 const initialState: ProductsState = {
     Gloves: [],
@@ -13,6 +14,15 @@ const reducer = createReducer(initialState, (builder) => {
         .addCase(SetProducts, (state, action) => {
             state[action.payload.category] = action.payload.products;
         });
+    // .addCase(SetAvailability, (state, action) => {
+    //     state = (state: ProductsState) => {
+    //         for (const key in state) {
+    //             if (Object.prototype.hasOwnProperty.call(state, key)) {
+    //                 state[key as Category]: 
+    //             }
+    //         }
+    //     };
+    // });
 });
 
 export default reducer;
