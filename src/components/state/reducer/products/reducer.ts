@@ -14,7 +14,6 @@ const reducer = createReducer(initialState, (builder) => {
             for (const key in state) {
                 if (Object.prototype.hasOwnProperty.call(state, key)) {
                     clonedState[key] = state[key].map(item => ({ ...item, availability: action.payload[item.id] ? action.payload[item.id] : item.availability }));
-                    // console.log(JSON.stringify(clonedState[key], undefined, 2));
                 }
             }
             return clonedState;

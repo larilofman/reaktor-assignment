@@ -4,6 +4,7 @@ import { Product } from '../state/reducer/products/types';
 import { RootState } from '../state/store';
 import './style.css';
 import ProductItem from '../product-item';
+import LoadingText from '../loading-text';
 
 interface Props {
     category: string
@@ -20,7 +21,11 @@ const ProductList: React.FC<Props> = ({ category }) => {
 
     }, [products]);
 
-    if (!shownProducts) return null;
+    if (!shownProducts) return (
+        <div className="loading-text-container">
+            <LoadingText fontSize="3rem" />
+        </div>
+    );
 
     return (
         <div className="product-table-container">

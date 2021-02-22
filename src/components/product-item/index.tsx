@@ -1,6 +1,7 @@
 import React, { Fragment } from 'react';
 import { Availability, Product } from '../state/reducer/products/types';
 import './style.css';
+import LoadingText from '../loading-text';
 
 interface Props {
     product: Product
@@ -36,7 +37,13 @@ const ProductItem: React.FC<Props> = ({ product }) => {
             )}</td>
             <td>{product.price}</td>
             <td>{product.manufacturer}</td>
-            <td className={availabilityClass}>{product.availability}</td>
+            <td className={availabilityClass}>
+                {product.availability === Availability.Loading
+                    ?
+                    <LoadingText />
+                    : product.availability}
+
+            </td>
         </tr>
     );
 };

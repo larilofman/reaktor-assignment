@@ -1,3 +1,7 @@
+.loading-text-container {
+    margin: 1rem auto;
+}
+
 .product-table-container {
     display: flex;
     flex-direction: row;

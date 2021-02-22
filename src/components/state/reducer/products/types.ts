@@ -12,7 +12,7 @@ export interface Product {
 }
 
 export enum Availability {
-    Default = "",
+    Loading = "",
     InStock = "In Stock",
     OutOfStock = "Out of stock",
     LowStock = "Low stock"
