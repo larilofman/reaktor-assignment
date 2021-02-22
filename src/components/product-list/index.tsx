@@ -22,7 +22,7 @@ const ProductList: React.FC<Props> = ({ category }) => {
     }, [products]);
 
     if (!shownProducts) return (
-        <div className="loading-text-container">
+        <div className="product-table-container">
             <LoadingText fontSize="3rem" />
         </div>
     );

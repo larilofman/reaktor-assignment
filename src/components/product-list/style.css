@@ -1,14 +1,10 @@
-.loading-text-container {
-    margin: 1rem auto;
-}
-
 .product-table-container {
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: center;
     width: 100%;
-    margin-top: 1rem;
+    margin: 1rem auto auto 153px;
 }
 
 .product-table {

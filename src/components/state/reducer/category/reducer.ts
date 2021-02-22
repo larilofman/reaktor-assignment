@@ -3,7 +3,7 @@ import { SetSelectedCategory } from './action';
 import { CategoryState } from './types';
 
 const initialState: CategoryState = {
-    selectedCategory: "gloves",
+    selectedCategory: undefined,
     allCategories: ["gloves", "facemasks", "beanies"]
 };
 

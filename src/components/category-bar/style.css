@@ -4,6 +4,8 @@
     min-height: 100vh;
     background-color: var(--light-cyan);
     border-right: 2px solid var(--dark);
+    position: fixed;
+    width: 153px;
 }
 
 .category-header {
