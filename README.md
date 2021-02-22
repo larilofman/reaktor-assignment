@@ -123,15 +123,8 @@ The main purpose of dev tools is for testing new features before they are implem
 
 ## Roadmap
 
-Quite a bit of work to do on the "engine" before an actual game can be made. Some ideas in an order of rough importance:
-
-* Major refactoring of map generating to allow for different types of maps like dungeons, outdoors and what not.
-* Saving the current game state to local storage and perhaps to cloud too.
-* A quest system with quest givers, objectives and log.
-* Experience system and more advanced character stats.
-* System for items and gear.
-* Field of vision with fog of war.
-* Separate map building tool.
+* Add a search and filters to find specific products.
+* Endless scroll hook could use some cleaning up.
 
 ## Contact
 
@@ -141,5 +134,4 @@ larwazor@gmail.com
 * [React Redux](https://react-redux.js.org/)
 * [Best-README-Template](https://github.com/othneildrew/Best-README-Template)
 * [TypeScript](https://www.typescriptlang.org/)
-* [RPG Maker Vx Ace Characters](https://lanto.itch.io/free-characters)
-* [Dungeon Crawl 32x32 tiles supplemental](https://opengameart.org/content/dungeon-crawl-32x32-tiles-supplemental)
+* [Reaktor](https://www.reaktor.com/)
