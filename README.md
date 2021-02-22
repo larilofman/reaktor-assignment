@@ -1,46 +1,145 @@
-# Getting Started with Create React App
+  <h1 align="center">React RPG</h1>
+  <p align="center">
+    Project assigment for Reaktor's junior position.
+    <br />
+    <a href="https://warehouse-listing.herokuapp.com/" target="_blank"><strong>Open app on Heroku »</strong></a>
+  </p>
+  
+## Table of Contents
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+* [About the Project](#about-the-project)
+  * [List Of Features](#list-of-features)
+  * [Built With](#built-with)
+* [Getting Started](#getting-started)
+  * [Installation](#installation)
+  * [Running](#running)
+* [Usage](#usage)
+  * [Movement](#movement)
+  * [Attacking](#attacking)
+  * [Interaction](#interaction)
+* [Major Components](#major-components)
+  * [Redux State](#redux-state)
+  * [Game](#game)
+  * [Map Manager](#map-manager)
+  * [Creature Manager](#creature-manager)
+  * [Change Zone hook](#change-zone-hook)
+  * [Use Turn hook](#use-turn-hook)
+  * [Player](#player)
+  * [Sprite](#sprite)
+  * [Combat Log](#combat-log)
+  * [Dev Tools](#dev-tools)
+* [Roadmap](#roadmap)
+* [Contact](#contact)
+* [Acknowledgements](#acknowledgements)
 
-## Available Scripts
+## About The Project
 
-In the project directory, you can run:
+A frontend React web application for desktop use. Assigment can be found at <a href="https://www.reaktor.com/junior-dev-assignment/" target="_blank">https://www.reaktor.com/junior-dev-assignment/</a>
 
-### `npm start`
+### List Of Features
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+* Tilebased movement
+* Following, clamped camera
+* Pathfinding
+* Zones created from JSON data
+* Tiles are placed by predefined mapping or randomly generated
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+### Built With
 
-### `npm test`
+* [React](https://reactjs.org)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Getting Started
 
-### `npm run build`
+### Installation
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+After cloning or downloading the project, install the dependencies with `npm install`.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Running
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Start the project on localhost port 3000 with `npm run dev`.  
+Build and serve the project on localhost port 5000 with `npm run bns`.
 
-### `npm run eject`
+## Usage
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+### Movement
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Character can be moved by either _clicking_ on the map or using _WASD_, _arrow keys_ or _numpad_(1, 3, 7 and 9 for diagonal movement).
+Turn can be skipped by pressing _numpad 5_ or _spacebar_ or _clicking_ on your character.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+### Attacking
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+Enemies can be attacked by walking towards them or clicking them when standing on a nearby tile.
 
-## Learn More
+### Interaction
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Interaction happens with **_E_**-key. So far the only interactable object is the portal to change zone.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Major Components
+
+### Redux State
+
+The store consists of several slices of varying sizes:
+* Game reducer keeps track of general game wide information such as player, zones that have been visited and saving and loading zones.
+* Zone reducer manages the currently active zone. Its tiles, objects and creatures and any changes to them such as movement or damage.
+* Turn reducer manages the turn system of currently active zone. Once player(and possibly followers if/when they are added) has acted, turn is passed to the next       faction and its creatures take their turn one by one.
+* Messages reducer stores combat log and info box message.
+* Camera position reducer is responsible for... the position of camera!
+
+### Game
+
+When zone changes in the game reducer, game manager initializes a new map for the zone reducer.
+
+### Map Manager
+
+Map manager listens to changes to the current zone name and once it changes, information is passed to map loader letting it know a new map should be created. The map loader checks if the zone has already been visited and loads those tiles to the current zone state. In the case of previously unvisited zone, data is loaded from JSON and map generated based on either predefined mapping or randomly generated from definitions. Once tiles are set, the state of tiles loaded is changed to true.
+
+### Creature Manager
+
+Working with the same logic as map manager, creature manager passes along information of a changed zone to creature loader. The creature loader checks whether the zone has been visited or not and either places the existing creatures back or spawns new ones based on JSON data. The player and their position is loaded from the game state.
+
+### Change Zone Hook
+
+When player changes zone, the character is stored with the game reducer as is the state of the zone left. Each zone exit contains information of their counterpart on the other zone. Player's position is set by this counterpart's position.
+
+### Use Turn Hook
+
+The game(and any new zones loaded) starts with player's turn. Once player has acted, the turn is given to the next creature of the player faction(allowing followers to be added later). Once all the creatures of a faction have had their turn, the turn is passed on to the next faction. Before each player turn there is a small delay, defined in settings file.
+
+### Player
+
+The player component uses hooks to handle different tasks. In the dependency array of useEffect hook It keeps track of changes to turn state, any keys pressed and whether a path should be found to a clicked position. When turn changes to player, the hook acts accordingly.
+
+### Sprite
+
+Sprite is a div with background image and it is rendered with an absolute position, its position moving to the opposite direction of camera. In case of "animated" sprite, offsets for the background image are passed as props and background position adjusted so the correct part of the tileset image is shown.
+
+### Combat Log
+
+Combat log hook contains a set of message types that can be added to the log. The hook sends a dispatch to add these to the combat log state which is tracked by the combag log UI component that renders them in a scrollable box of text.
+
+### Dev Tools
+
+The main purpose of dev tools is for testing new features before they are implemented in the game, such as saving and loading zones. The component can also be freely moved around because why not!
+
+## Roadmap
+
+Quite a bit of work to do on the "engine" before an actual game can be made. Some ideas in an order of rough importance:
+
+* Major refactoring of map generating to allow for different types of maps like dungeons, outdoors and what not.
+* Saving the current game state to local storage and perhaps to cloud too.
+* A quest system with quest givers, objectives and log.
+* Experience system and more advanced character stats.
+* System for items and gear.
+* Field of vision with fog of war.
+* Separate map building tool.
+
+## Contact
+
+larwazor@gmail.com
+
+## Acknowledgements
+* [React Redux](https://react-redux.js.org/)
+* [Best-README-Template](https://github.com/othneildrew/Best-README-Template)
+* [TypeScript](https://www.typescriptlang.org/)
+* [RPG Maker Vx Ace Characters](https://lanto.itch.io/free-characters)
+* [Dungeon Crawl 32x32 tiles supplemental](https://opengameart.org/content/dungeon-crawl-32x32-tiles-supplemental)
