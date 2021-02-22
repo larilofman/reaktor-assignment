@@ -12,10 +12,7 @@ const useInitData = () => {
 
     useEffect(() => {
         // once app starts, fetch products for all the categories 
-        allCategories.forEach(category => {
-            dispatch(GetProducts(category));
-        });
-
+        allCategories.forEach(category => dispatch(GetProducts(category)));
     }, [dispatch]);
 
     useEffect(() => {
@@ -39,7 +36,6 @@ const useInitData = () => {
         if (manufacturers.length) {
             manufacturers.forEach(manufacturer => dispatch(GetAvailability(manufacturer)));
         }
-
     }, [manufacturers.length]);
 
 };

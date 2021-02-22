@@ -10,6 +10,7 @@ const reducer = createReducer(initialState, (builder) => {
             state[action.payload.category] = action.payload.products;
         })
         .addCase(SetAvailability, (state, action) => {
+            // update every item in every category with stock data
             const newState: { [key: string]: Product[] } = {};
             for (const key in state) {
                 if (Object.prototype.hasOwnProperty.call(state, key)) {

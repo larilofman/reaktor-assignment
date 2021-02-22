@@ -4,17 +4,44 @@ import { Product } from "../../components/state/reducer/products/types";
 import { RootState } from "../../components/state/store";
 
 const useInfiniteScroll = (category: string, sliceAmount = 100) => {
-    const products = useSelector((state: RootState) => state.products[category]);
+    const products = useSelector((state: RootState) => state.products[category] ? state.products[category] : []);
     const [isBottom, setIsBottom] = useState(false);
+    const [prevCategory, setPrevCategory] = useState("");
     const [shownProducts, setShownProducts] = useState<Product[]>([]);
 
+    // when category changes and so does the amount of products
     useEffect(() => {
-        addProducts();
+        // scroll to top and show only the initial amount of products
+        resetProducts();
+        // set "previous" category as the current one
+        setPrevCategory(category);
     }, [products.length]);
 
+    const resetProducts = () => {
+        if (products) {
+            setShownProducts(products.slice(0, sliceAmount));
+            window.scrollTo(0, 0);
+            setIsBottom(false);
+        }
+    };
+
+    useEffect(() => {
+        // when products(mostly their stock status) change but category hasn't changed, update products with the stock status
+        updateProducts();
+    }, [products]);
+
+    const updateProducts = () => {
+        if (products && shownProducts.length && category === prevCategory) {
+            setShownProducts(products.slice(0, shownProducts.length));
+        }
+    };
+
+    // add more products to show when scrolling
     const addProducts = () => {
-        setShownProducts(products.slice(0, shownProducts.length + sliceAmount));
-        setIsBottom(false);
+        if (products) {
+            setShownProducts(products.slice(0, shownProducts.length + sliceAmount));
+            setIsBottom(false);
+        }
     };
 
     const handleScroll = () => {

@@ -20,17 +20,16 @@ export const GetProducts = (category: string) => {
 export const GetAvailability = (manufacturer: string) => {
     return async (dispatch: Dispatch<{ type: "SET_AVAILABILITY", payload: Record<string, Availability> }>) => {
         let data: { code: number, response: { id: string, DATAPAYLOAD: string }[] | "[]" } = await getAvailabilityByManufacturer(manufacturer);
-        console.log(manufacturer);
+        // retry fetching data until response is no longer the curious string of brackets
         while (data.response === "[]") {
-            console.error('error fetching availability data, retrying');
+            console.error('error fetching stock data, retrying');
             data = await getAvailabilityByManufacturer(manufacturer);
         }
-
+        // turn stock data into enum format
         const availabilityObject = data.response.reduce<Record<string, Availability>>((acc, cur) => {
             acc[cur.id.toLowerCase()] = formatAvailability(cur.DATAPAYLOAD);
             return acc;
         }, {});
-        // console.log(availabilityObject);
 
         dispatch({
             type: "SET_AVAILABILITY",

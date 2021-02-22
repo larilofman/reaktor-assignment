@@ -1,10 +1,11 @@
 import { createReducer } from '@reduxjs/toolkit';
 import { SetSelectedCategory } from './action';
 import { CategoryState } from './types';
+import { categories } from '../../../../data.json';
 
 const initialState: CategoryState = {
-    selectedCategory: undefined,
-    allCategories: ["gloves", "facemasks", "beanies"]
+    selectedCategory: "gloves",
+    allCategories: categories
 };
 
 const reducer = createReducer(initialState, (builder) => {

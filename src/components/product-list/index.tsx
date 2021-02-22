@@ -11,7 +11,7 @@ interface Props {
 const ProductList: React.FC<Props> = ({ category }) => {
     const { shownProducts } = useInfiniteScroll(category);
 
-    if (!shownProducts) return (
+    if (!shownProducts.length) return (
         <div className="product-table-container">
             <LoadingText fontSize="3rem" />
         </div>
