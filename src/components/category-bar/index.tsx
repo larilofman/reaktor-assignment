@@ -1,7 +1,6 @@
 import React from 'react';
 import './style.css';
 import CategoryLink from '../category-link';
-import { Category } from '../state/reducer/category/types';
 import { SetSelectedCategory } from '../state/reducer/category/action';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../state/store';

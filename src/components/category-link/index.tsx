@@ -1,9 +1,8 @@
 import React from 'react';
-import { Category } from '../state/reducer/category/types';
 import './style.css';
 
 interface Props {
-    category: Category
+    category: string
     onClick: () => void
     selected: boolean
 }
@@ -15,7 +14,7 @@ const CategoryLink: React.FC<Props> = ({ category, onClick, selected }) => {
     return (
         <div className={containerClass} onClick={onClick}>
             <p className="category-text">
-                {category}
+                {category.charAt(0).toUpperCase() + category.slice(1)}
             </p>
         </div>
     );

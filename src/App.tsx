@@ -3,21 +3,13 @@ import { useDispatch, useSelector } from 'react-redux';
 import './App.css';
 import CategoryBar from './components/category-bar';
 import ProductList from './components/product-list';
-import { Category } from './components/state/reducer/category/types';
-import { FetchProducts, GetAvailability } from './components/state/reducer/products/action';
+import { GetProducts, GetAvailability } from './components/state/reducer/products/action';
 import { RootState } from './components/state/store';
+import useInitData from './hooks/use-init-data';
 
 const App = () => {
     const selectedCategory = useSelector((state: RootState) => state.category.selectedCategory);
-    const dispatch = useDispatch();
-
-    useEffect(() => {
-        Object.keys(Category).forEach((category) =>
-            dispatch(FetchProducts(category as Category))
-        );
-        dispatch(GetAvailability("niksleh"));
-    }, [dispatch]);
-
+    useInitData();
     return (
         <div className="App">
             <CategoryBar />

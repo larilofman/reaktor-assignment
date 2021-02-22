@@ -1,14 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
-import { Category } from '../state/reducer/category/types';
 import { Product } from '../state/reducer/products/types';
 import { RootState } from '../state/store';
-import ProductTable from '../product-table';
 import './style.css';
 import ProductItem from '../product-item';
 
 interface Props {
-    category: Category
+    category: string
 }
 
 const ProductList: React.FC<Props> = ({ category }) => {
@@ -25,11 +23,10 @@ const ProductList: React.FC<Props> = ({ category }) => {
     if (!shownProducts) return null;
 
     return (
-        // <ProductTable headers={["Name", "Color", "Price", "Manufacturer"]} data={shownProducts} />
         <div className="product-table-container">
             <table className="product-table">
-                <thead>
-                    <tr>
+                <thead className="product-table-header">
+                    <tr >
                         <th>Name</th>
                         <th>Color</th>
                         <th>Price</th>
@@ -37,7 +34,7 @@ const ProductList: React.FC<Props> = ({ category }) => {
                         <th>Availability</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody className="product-table-body">
                     {shownProducts.map(p => <ProductItem key={p.id} product={p} />)}
                 </tbody>
             </table>
