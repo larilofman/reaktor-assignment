@@ -1,25 +1,15 @@
-import React, { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
-import { Product } from '../state/reducer/products/types';
-import { RootState } from '../state/store';
+import React from 'react';
 import './style.css';
 import ProductItem from '../product-item';
 import LoadingText from '../loading-text';
+import useInfiniteScroll from '../../hooks/use-infinite-scroll';
 
 interface Props {
     category: string
 }
 
 const ProductList: React.FC<Props> = ({ category }) => {
-    const products = useSelector((state: RootState) => state.products[category]);
-    const [shownProducts, setShownProducts] = useState<Product[]>();
-
-    useEffect(() => {
-        if (products) {
-            setShownProducts(products.slice(0, 150));
-        }
-
-    }, [products]);
+    const { shownProducts } = useInfiniteScroll(category);
 
     if (!shownProducts) return (
         <div className="product-table-container">

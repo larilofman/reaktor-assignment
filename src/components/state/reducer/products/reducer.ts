@@ -10,13 +10,18 @@ const reducer = createReducer(initialState, (builder) => {
             state[action.payload.category] = action.payload.products;
         })
         .addCase(SetAvailability, (state, action) => {
-            const clonedState: { [key: string]: Product[] } = {};
+            const newState: { [key: string]: Product[] } = {};
             for (const key in state) {
                 if (Object.prototype.hasOwnProperty.call(state, key)) {
-                    clonedState[key] = state[key].map(item => ({ ...item, availability: action.payload[item.id] ? action.payload[item.id] : item.availability }));
+                    newState[key] = state[key].map(item => (
+                        {
+                            ...item,
+                            availability: action.payload[item.id] ? action.payload[item.id] : item.availability
+                        }
+                    ));
                 }
             }
-            return clonedState;
+            return newState;
         });
 });
 

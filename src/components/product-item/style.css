@@ -1,9 +1,11 @@
 .product-in-stock {
     color:green;
 }
+
 .product-out-of-stock {
     color: red;
 }
+
 .product-low {
     color: darkgoldenrod;
 }

@@ -1,7 +1,7 @@
 import { createAction, Dispatch } from '@reduxjs/toolkit';
 import { Availability, Product, SET_PRODUCTS, SET_AVAILABILITY } from './types';
 import { getProductsByCategory } from '../../../services/products';
-import { getAvailabilityByManufacturer, getAvailabilityByManufacturerBroken } from '../../../services/availability';
+import { getAvailabilityByManufacturer } from '../../../services/availability';
 
 export const SetProducts = createAction<{ category: string, products: Product[] }>(SET_PRODUCTS);
 export const SetAvailability = createAction<Record<string, Availability>>(SET_AVAILABILITY);

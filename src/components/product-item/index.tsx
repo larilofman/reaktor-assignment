@@ -42,7 +42,6 @@ const ProductItem: React.FC<Props> = ({ product }) => {
                     ?
                     <LoadingText />
                     : product.availability}
-
             </td>
         </tr>
     );

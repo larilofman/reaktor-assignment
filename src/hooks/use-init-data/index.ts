@@ -11,6 +11,7 @@ const useInitData = () => {
     const dispatch = useDispatch();
 
     useEffect(() => {
+        // once app starts, fetch products for all the categories 
         allCategories.forEach(category => {
             dispatch(GetProducts(category));
         });
@@ -34,10 +35,9 @@ const useInitData = () => {
     }, [products]);
 
     useEffect(() => {
+        // when all the different manufacturers are found, get their stock data
         if (manufacturers.length) {
-            // console.log(manufacturers);
             manufacturers.forEach(manufacturer => dispatch(GetAvailability(manufacturer)));
-            // dispatch(GetAvailability(manufacturers));
         }
 
     }, [manufacturers.length]);
