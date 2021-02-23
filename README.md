@@ -1,4 +1,4 @@
-  <h1 align="center">React RPG</h1>
+  <h1 align="center">Warehouse App</h1>
   <p align="center">
     Project assigment for Reaktor's junior position.
     <br />
