@@ -1,7 +1,7 @@
 import { createReducer } from '@reduxjs/toolkit';
 import { SetSelectedCategory } from './action';
 import { CategoryState } from './types';
-import { categories } from '../../../../data.json';
+import { categories } from '../../../../config';
 
 const initialState: CategoryState = {
     selectedCategory: undefined,

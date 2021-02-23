@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { apiUrl, proxy } from '../../data.json';
+import { apiUrl, proxy } from '../../config';
 
 export const getProductsByCategory = async (category: string) => {
     const response = await axios.get(`${proxy}/${apiUrl}/products/${category.toLowerCase()}`);

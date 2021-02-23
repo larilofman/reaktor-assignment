@@ -1,5 +1,0 @@
-{
-    "categories": ["gloves", "facemasks", "beanies"],
-    "proxy": "https://salty-gorge-61248.herokuapp.com",
-    "apiUrl": "https://bad-api-assignment.reaktor.com/v2"
-}
