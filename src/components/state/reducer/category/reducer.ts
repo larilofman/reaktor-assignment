@@ -4,7 +4,7 @@ import { CategoryState } from './types';
 import { categories } from '../../../../data.json';
 
 const initialState: CategoryState = {
-    selectedCategory: "gloves",
+    selectedCategory: undefined,
     allCategories: categories
 };
 

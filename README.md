@@ -14,20 +14,7 @@
   * [Installation](#installation)
   * [Running](#running)
 * [Usage](#usage)
-  * [Movement](#movement)
-  * [Attacking](#attacking)
-  * [Interaction](#interaction)
 * [Major Components](#major-components)
-  * [Redux State](#redux-state)
-  * [Game](#game)
-  * [Map Manager](#map-manager)
-  * [Creature Manager](#creature-manager)
-  * [Change Zone hook](#change-zone-hook)
-  * [Use Turn hook](#use-turn-hook)
-  * [Player](#player)
-  * [Sprite](#sprite)
-  * [Combat Log](#combat-log)
-  * [Dev Tools](#dev-tools)
 * [Roadmap](#roadmap)
 * [Contact](#contact)
 * [Acknowledgements](#acknowledgements)
@@ -62,50 +49,7 @@ Click a category on the navigation bar on the left side to view a product list.
 
 ## Major Components
 
-### Redux State
-
-The store consists of several slices of varying sizes:
-* Game reducer keeps track of general game wide information such as player, zones that have been visited and saving and loading zones.
-* Zone reducer manages the currently active zone. Its tiles, objects and creatures and any changes to them such as movement or damage.
-* Turn reducer manages the turn system of currently active zone. Once player(and possibly followers if/when they are added) has acted, turn is passed to the next       faction and its creatures take their turn one by one.
-* Messages reducer stores combat log and info box message.
-* Camera position reducer is responsible for... the position of camera!
-
-### Game
-
-When zone changes in the game reducer, game manager initializes a new map for the zone reducer.
-
-### Map Manager
-
-Map manager listens to changes to the current zone name and once it changes, information is passed to map loader letting it know a new map should be created. The map loader checks if the zone has already been visited and loads those tiles to the current zone state. In the case of previously unvisited zone, data is loaded from JSON and map generated based on either predefined mapping or randomly generated from definitions. Once tiles are set, the state of tiles loaded is changed to true.
-
-### Creature Manager
-
-Working with the same logic as map manager, creature manager passes along information of a changed zone to creature loader. The creature loader checks whether the zone has been visited or not and either places the existing creatures back or spawns new ones based on JSON data. The player and their position is loaded from the game state.
-
-### Change Zone Hook
-
-When player changes zone, the character is stored with the game reducer as is the state of the zone left. Each zone exit contains information of their counterpart on the other zone. Player's position is set by this counterpart's position.
-
-### Use Turn Hook
-
-The game(and any new zones loaded) starts with player's turn. Once player has acted, the turn is given to the next creature of the player faction(allowing followers to be added later). Once all the creatures of a faction have had their turn, the turn is passed on to the next faction. Before each player turn there is a small delay, defined in settings file.
-
-### Player
-
-The player component uses hooks to handle different tasks. In the dependency array of useEffect hook It keeps track of changes to turn state, any keys pressed and whether a path should be found to a clicked position. When turn changes to player, the hook acts accordingly.
-
-### Sprite
-
-Sprite is a div with background image and it is rendered with an absolute position, its position moving to the opposite direction of camera. In case of "animated" sprite, offsets for the background image are passed as props and background position adjusted so the correct part of the tileset image is shown.
-
-### Combat Log
-
-Combat log hook contains a set of message types that can be added to the log. The hook sends a dispatch to add these to the combat log state which is tracked by the combag log UI component that renders them in a scrollable box of text.
-
-### Dev Tools
-
-The main purpose of dev tools is for testing new features before they are implemented in the game, such as saving and loading zones. The component can also be freely moved around because why not!
+TBA
 
 ## Roadmap
 
