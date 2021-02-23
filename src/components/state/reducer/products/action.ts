@@ -48,5 +48,4 @@ const formatAvailability = (dataString: string): Availability => {
     } else {
         return Availability.Loading;
     }
-
 };

@@ -18,7 +18,7 @@ const ProductItem: React.FC<Props> = ({ product }) => {
             availabilityClass = "product-out-of-stock";
             break;
         case Availability.LowStock:
-            availabilityClass = "product-low";
+            availabilityClass = "product-low-stock";
             break;
         default:
             break;

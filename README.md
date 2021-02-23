@@ -15,6 +15,8 @@
   * [Running](#running)
 * [Usage](#usage)
 * [Major Components](#major-components)
+  * [UseInitData](#use-init-data)
+  * [Products Reducer](#products-reducer)
 * [Roadmap](#roadmap)
 * [Contact](#contact)
 * [Acknowledgements](#acknowledgements)
@@ -49,7 +51,19 @@ Click a category on the navigation bar on the left side to view a product list.
 
 ## Major Components
 
-TBA
+### Use Init Data
+
+App component uses the <a href="https://github.com/larilofman/reaktor-assignment/blob/main/src/hooks/use-init-data/index.ts" target="_blank">useInitData-hook</a> to initialize data. Categories are stored in <a href="https://github.com/larilofman/reaktor-assignment/blob/main/src/config.ts" target="_blank">config.ts</a> from which the category slice of Redux state gets its initial state. Once all the products are stored and an useEffect fires, the hook finds all different manufacturers and stores those in the state. Tracking those with another useEffect, the hook then sends a dispatch to get their availability/stock data from another api endpoint.
+
+### Products Reducer
+
+Product reducer has two <a href="https://github.com/larilofman/reaktor-assignment/blob/main/src/components/state/reducer/products/action.ts" target="_blank">async actions</a>,
+one for fetching products by category and one for fetching availability by manufacturer. 
+
+Once the GetProducts function gets a response, it maps all the returned products so that their availability status is set to loading.
+
+The GetAvailability function runs until it gets a valid response from the api and proceeds turning that data into an object with product ids as keys and an Availability enum as value
+before sending a dispatch to store it.
 
 ## Roadmap
 
