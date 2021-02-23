@@ -1,9 +1,8 @@
 import axios from 'axios';
-import { apiUrl } from '../../data.json';
-import { config } from './availability';
+import { apiUrl, proxy } from '../../data.json';
 
 export const getProductsByCategory = async (category: string) => {
     console.log(`${apiUrl}/products/${category.toLowerCase()}`);
-    const response = await axios.get(`${apiUrl}/products/${category.toLowerCase()}`, config);
+    const response = await axios.get(`${proxy}/${apiUrl}/products/${category.toLowerCase()}`);
     return response.data;
 };
