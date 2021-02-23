@@ -5,6 +5,7 @@
     justify-content: center;
     width: 100%;
     margin: 1rem auto auto 153px;
+    font-size: 12px;
 }
 
 .product-table {
@@ -34,4 +35,14 @@
 
 .product-table-body tr:hover {
     background-color: var(--light-grey);
+}
+
+@media screen and (max-width:800px) {
+    .product-table-container {
+        margin: 56px auto 0 auto;
+        width: 100vw;
+    }
+    .product-table {
+        width: 100%;
+    }
 }
