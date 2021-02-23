@@ -23,11 +23,11 @@
 
 ## About The Project
 
-A frontend React web application for desktop use. Assigment can be found at <a href="https://www.reaktor.com/junior-dev-assignment/" target="_blank">https://www.reaktor.com/junior-dev-assignment/</a>
+A responsive frontend React web application. Instructions for the assignment can be found at <a href="https://www.reaktor.com/junior-dev-assignment/" target="_blank">https://www.reaktor.com/junior-dev-assignment/</a>
 
 ### List Of Features
 
-* Three categories of fake products to display: gloves, facemasks and beanies.
+* Three categories of products to display: gloves, facemasks and beanies.
 * List of products can be viewed with an infinitely scrolling page. Enjoy thousands of products!
 
 ### Built With
@@ -57,13 +57,12 @@ App component uses the <a href="https://github.com/larilofman/reaktor-assignment
 
 ### Products Reducer
 
-Product reducer has two <a href="https://github.com/larilofman/reaktor-assignment/blob/main/src/components/state/reducer/products/action.ts" target="_blank">async actions</a>,
+Products reducer has two <a href="https://github.com/larilofman/reaktor-assignment/blob/main/src/components/state/reducer/products/action.ts" target="_blank">async actions</a>,
 one for fetching products by category and one for fetching availability by manufacturer. 
 
 Once the GetProducts function gets a response, it maps all the returned products so that their availability status is set to loading.
 
-The GetAvailability function runs until it gets a valid response from the api and proceeds turning that data into an object with product ids as keys and an Availability enum as value
-before sending a dispatch to store it.
+The GetAvailability function runs until it gets a valid response from the api and proceeds turning that data into a record with product ids as keys and Availability enums as values before sending a dispatch to store it.
 
 ## Roadmap
 
@@ -76,6 +75,6 @@ larwazor@gmail.com
 
 ## Acknowledgements
 * [React Redux](https://react-redux.js.org/)
-* [Best-README-Template](https://github.com/othneildrew/Best-README-Template)
 * [TypeScript](https://www.typescriptlang.org/)
+* [Best-README-Template](https://github.com/othneildrew/Best-README-Template)
 * [Reaktor](https://www.reaktor.com/)
