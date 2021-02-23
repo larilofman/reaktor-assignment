@@ -9,7 +9,6 @@ export const SetAvailability = createAction<Record<string, Availability>>(SET_AV
 export const GetProducts = (category: string) => {
     return async (dispatch: Dispatch<{ type: "SET_PRODUCTS", payload: { category: string, products: Product[] } }>) => {
         const products: Product[] = await getProductsByCategory(category);
-        console.log(products);
         const productsLoading = products.map(p => ({ ...p, availability: Availability.Loading }));
         dispatch({
             type: "SET_PRODUCTS",
