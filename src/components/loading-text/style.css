@@ -28,3 +28,9 @@
     0% { color: rgba(255, 0, 0, 0) }
     100% { color: var(--dark) }
 }
+
+@media screen and (max-width:800px) {
+    .loading-text {
+        font-size: 12px;
+    }
+}

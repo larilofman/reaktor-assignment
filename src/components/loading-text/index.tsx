@@ -5,7 +5,7 @@ interface Props {
     fontSize?: string | number
 }
 
-const LoadingText: React.FC<Props> = ({ fontSize = "1rem" }) => {
+const LoadingText: React.FC<Props> = ({ fontSize }) => {
     return (
         <>
             <span className="loading-text" style={{ fontSize }}>Loading</span>
