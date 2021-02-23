@@ -1,4 +1,4 @@
 {
     "categories": ["gloves", "facemasks", "beanies"],
-    "apiUrl": "0.0.0.0:8080/https://bad-api-assignment.reaktor.com/v2"
+    "apiUrl": "https://bad-api-assignment.reaktor.com/v2"
 }
