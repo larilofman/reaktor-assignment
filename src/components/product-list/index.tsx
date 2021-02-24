@@ -12,7 +12,7 @@ const ProductList: React.FC<Props> = ({ category }) => {
     const { shownProducts } = useInfiniteScroll(category);
 
     if (!shownProducts.length) return (
-        <div className="product-table-container loading-text-container">
+        <div data-cy="products-loading" className="product-table-container loading-text-container">
             <LoadingText fontSize="3rem" />
         </div>
     );
