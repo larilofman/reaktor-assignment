@@ -7,18 +7,18 @@ export const SetProducts = createAction<{ category: string, products: Product[] 
 export const SetAvailability = createAction<Record<string, Availability>>(SET_AVAILABILITY);
 
 export const GetProducts = (category: string) => {
-    return async (dispatch: Dispatch<{ type: "SET_PRODUCTS", payload: { category: string, products: Product[] } }>) => {
+    return async (dispatch: Dispatch<{ type: typeof SET_PRODUCTS, payload: { category: string, products: Product[] } }>) => {
         const products: Product[] = await getProductsByCategory(category);
         const productsLoading = products.map(p => ({ ...p, availability: Availability.Loading }));
         dispatch({
-            type: "SET_PRODUCTS",
+            type: SET_PRODUCTS,
             payload: { category, products: productsLoading }
         });
     };
 };
 
 export const GetAvailability = (manufacturer: string) => {
-    return async (dispatch: Dispatch<{ type: "SET_AVAILABILITY", payload: Record<string, Availability> }>) => {
+    return async (dispatch: Dispatch<{ type: typeof SET_AVAILABILITY, payload: Record<string, Availability> }>) => {
         let data: { code: number, response: { id: string, DATAPAYLOAD: string }[] | "[]" } = await getAvailabilityByManufacturer(manufacturer);
         // retry fetching data until response is no longer the curious string of brackets
         while (data.response === "[]") {
@@ -32,7 +32,7 @@ export const GetAvailability = (manufacturer: string) => {
         }, {});
 
         dispatch({
-            type: "SET_AVAILABILITY",
+            type: SET_AVAILABILITY,
             payload: availabilityObject
         });
     };
