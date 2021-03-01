@@ -25,7 +25,7 @@ export const GetAvailability = (manufacturer: string) => {
             console.error('error fetching stock data, retrying');
             data = await getAvailabilityByManufacturer(manufacturer);
         }
-        console.log(data);
+
         // turn stock data into enum format
         const availabilityObject = data.response.reduce<Record<string, Availability>>((acc, cur) => {
             acc[cur.id.toLowerCase()] = formatAvailability(cur.DATAPAYLOAD);
