@@ -21,10 +21,11 @@ export const GetAvailability = (manufacturer: string) => {
     return async (dispatch: Dispatch<{ type: typeof SET_AVAILABILITY, payload: Record<string, Availability> }>) => {
         let data: { code: number, response: { id: string, DATAPAYLOAD: string }[] | "[]" } = await getAvailabilityByManufacturer(manufacturer);
         // retry fetching data until response is no longer the curious string of brackets
-        while (data.response === "[]") {
+        while (!data || data.response === "[]") {
             console.error('error fetching stock data, retrying');
             data = await getAvailabilityByManufacturer(manufacturer);
         }
+        console.log(data);
         // turn stock data into enum format
         const availabilityObject = data.response.reduce<Record<string, Availability>>((acc, cur) => {
             acc[cur.id.toLowerCase()] = formatAvailability(cur.DATAPAYLOAD);
