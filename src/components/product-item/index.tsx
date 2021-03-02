@@ -2,15 +2,24 @@ import React, { Fragment } from 'react';
 import { Availability, Product } from '../state/reducer/products/types';
 import './style.css';
 import LoadingText from '../loading-text';
+import { RootState } from '../state/store';
+import { useSelector } from 'react-redux';
 
 interface Props {
     product: Product
 }
 
 const ProductItem: React.FC<Props> = ({ product }) => {
+    const availability = useSelector((state: RootState) =>
+        (state.availability[product.manufacturer] && state.availability[product.manufacturer][product.id])
+            ? state.availability[product.manufacturer][product.id]
+            : Availability.Loading
+    );
+
+    // console.log('rendering ', product.name, product.id);
 
     let availabilityClass = "";
-    switch (product.availability) {
+    switch (availability) {
         case Availability.InStock:
             availabilityClass = "product-in-stock";
             break;
@@ -38,10 +47,10 @@ const ProductItem: React.FC<Props> = ({ product }) => {
             <td>{product.price}</td>
             <td>{product.manufacturer}</td>
             <td className={availabilityClass}>
-                {product.availability === Availability.Loading
+                {availability === Availability.Loading
                     ?
                     <LoadingText />
-                    : product.availability}
+                    : availability}
             </td>
         </tr>
     );

@@ -4,12 +4,14 @@ import thunk from 'redux-thunk';
 import categoryReducer from '../reducer/category/reducer';
 import productsReducer from '../reducer/products/reducer';
 import manufacturersReducer from '../reducer/manufacturers/reducer';
+import availabilityReducer from '../reducer/availability/reducer';
 
 const rootReducer = combineReducers(
     {
         category: categoryReducer,
         products: productsReducer,
-        manufacturers: manufacturersReducer
+        manufacturers: manufacturersReducer,
+        availability: availabilityReducer
     });
 
 const store = createStore(

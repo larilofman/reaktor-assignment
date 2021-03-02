@@ -1,7 +1,8 @@
 import { useEffect, } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { GetAvailability } from "../../components/state/reducer/availability/action";
 import { SetManufacturers } from "../../components/state/reducer/manufacturers/action";
-import { GetProducts, GetAvailability } from "../../components/state/reducer/products/action";
+import { GetProducts } from "../../components/state/reducer/products/action";
 import { RootState } from "../../components/state/store";
 
 const useInitData = () => {
@@ -29,7 +30,7 @@ const useInitData = () => {
             const manufacturerArray = Array.from(manufacturers);
             dispatch(SetManufacturers(manufacturerArray));
         }
-    }, [products]);
+    }, [Object.keys(products).length]);
 
     useEffect(() => {
         // when all the different manufacturers are found, get their stock data
